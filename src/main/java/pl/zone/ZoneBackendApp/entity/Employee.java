@@ -14,4 +14,7 @@ public class Employee {
     private String firstName;
 
     private String lastName;
+
+    @OneToOne(mappedBy = "employee")
+    private Operator operator;
 }
