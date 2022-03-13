@@ -15,17 +15,17 @@ public class EmployeeController {
     private final EmployeeRepository er;
 
     @PostMapping("/employees")
-    Employee newEmployee(@RequestBody Employee newEmployee) {
+    public Employee newEmployee(@RequestBody Employee newEmployee) {
         return er.save(newEmployee);
     }
 
     @GetMapping("/employees")
-    List<Employee> listEmployees() {
+    public List<Employee> listEmployees() {
         return er.findAll();
     }
 
     @DeleteMapping("/employees")
-    ResponseEntity deleteEmployee(@RequestBody Long idEmployee) {
+    public ResponseEntity deleteEmployee(@RequestBody Long idEmployee) {
         er.deleteById(idEmployee);
         return ResponseEntity.ok().build();
     }

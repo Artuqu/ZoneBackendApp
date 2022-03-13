@@ -1,10 +1,14 @@
 package pl.zone.ZoneBackendApp.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Operator {
 
     @Id
@@ -18,6 +22,5 @@ public class Operator {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idEmployee")
     private Employee employee;
-
 
 }
