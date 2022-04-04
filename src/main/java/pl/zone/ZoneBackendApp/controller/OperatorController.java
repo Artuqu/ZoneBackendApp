@@ -1,11 +1,10 @@
 package pl.zone.ZoneBackendApp.controller;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.zone.ZoneBackendApp.dto.OperatorAuthenticationResultDto;
-import pl.zone.ZoneBackendApp.dto.OperatorCredentialsDto;
+import pl.zone.ZoneBackendApp.dto.OperatorAuthenticationResult;
+import pl.zone.ZoneBackendApp.dto.OperatorCredentials;
 import pl.zone.ZoneBackendApp.entity.Operator;
 import pl.zone.ZoneBackendApp.repository.OperatorRepository;
 
@@ -35,17 +34,17 @@ public class OperatorController {
     }
 
     @PostMapping("/verify")
-    public OperatorAuthenticationResultDto verifyCredentials(@RequestBody OperatorCredentialsDto operatorCredentialsDto){
-        Optional<Operator> findLogin = or.findByLogin(operatorCredentialsDto.getLogin());
+    public OperatorAuthenticationResult verifyCredentials(@RequestBody OperatorCredentials operatorCredentials){
+        Optional<Operator> findLogin = or.findByLogin(operatorCredentials.getLogin());
         if(!findLogin.isPresent()){
             System.out.println("That user name does not exist");
-            return OperatorAuthenticationResultDto.createUnauthenticated();
+            return OperatorAuthenticationResult.createUnauthenticated();
         }
         Operator op = findLogin.get();
-        if (!op.getPassword().equals(operatorCredentialsDto.getPassword())){
-        return OperatorAuthenticationResultDto.createUnauthenticated();
+        if (!op.getPassword().equals(operatorCredentials.getPassword())){
+        return OperatorAuthenticationResult.createUnauthenticated();
         } else
-        return OperatorAuthenticationResultDto.of(op);
+        return OperatorAuthenticationResult.of(op);
     }
 
 

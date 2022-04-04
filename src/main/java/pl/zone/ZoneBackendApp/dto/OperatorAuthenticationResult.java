@@ -4,21 +4,21 @@ import lombok.Data;
 import pl.zone.ZoneBackendApp.entity.Operator;
 
 @Data
-public class OperatorAuthenticationResultDto {
+public class OperatorAuthenticationResult {
 
     private Long idOperator;
     private String firstName;
     private String lastName;
     private boolean authenticated;
 
-    public static OperatorAuthenticationResultDto createUnauthenticated(){
-        OperatorAuthenticationResultDto dto = new OperatorAuthenticationResultDto();
+    public static OperatorAuthenticationResult createUnauthenticated(){
+        OperatorAuthenticationResult dto = new OperatorAuthenticationResult();
         dto.setAuthenticated(false);
         return dto;
     }
 
-    public static OperatorAuthenticationResultDto of (Operator operator){
-        OperatorAuthenticationResultDto dto = new OperatorAuthenticationResultDto();
+    public static OperatorAuthenticationResult of (Operator operator){
+        OperatorAuthenticationResult dto = new OperatorAuthenticationResult();
         dto.setAuthenticated(true);
         dto.setFirstName(operator.getEmployee().getFirstName());
         dto.setLastName(operator.getEmployee().getLastName());

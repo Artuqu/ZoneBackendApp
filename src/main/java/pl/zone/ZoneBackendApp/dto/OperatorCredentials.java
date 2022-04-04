@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class OperatorCredentialsDto {
+public class OperatorCredentials {
 
     private String login;
     private String password;
